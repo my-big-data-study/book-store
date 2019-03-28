@@ -5,7 +5,7 @@
         <div class="box book" v-for="book in books" v-bind:key="book.title">
           <div class="row">
             <div class="col-xs-9">
-              <div class="boot-title">{{book.title}}</div>
+              <div class="book-title">{{book.title}}</div>
             </div>
             <div class="col-xs-3">
               <div class="book-quantity">
@@ -15,6 +15,18 @@
           </div>
         </div>
 
+        <div class="box">
+          <div class="row">
+            <div class="col-xs-9">
+              <div class="order-delay-label">Order Delay (seconds)</div>
+            </div>
+            <div class="col-xs-3">
+              <div class="order-delay">
+                <input v-model="delay" type="number" required>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="actions">
           <button v-on:click="createOrder">Create</button>
         </div>
@@ -43,6 +55,7 @@ export default {
     return {
       books: [],
       orders: [],
+      delay: 0,
       selectedBook: null
     }
   },
@@ -71,7 +84,8 @@ export default {
         return
       }
       const payload = {
-        items
+        items,
+        delay: this.delay
       }
       axios.post("/api/orders", payload)
       .then(response => {
@@ -82,8 +96,6 @@ export default {
           timestamp: order.timestamp,
           items: items
         })
-
-        console.log(this.orders);
       })
     }
   }
@@ -94,11 +106,18 @@ export default {
   .actions {
     text-align: right;
   }
-  .book-quantity {
+  .book-title {
+    text-align: left;
+  }
+  .book-quantity, .order-delay {
     text-align: right
   }
   .book {
-    margin: 10px 0;
+    margin: 15px 0;
+  }
+  .order-delay-label {
+    text-align: right;
+    color: #AAA
   }
   .item {
     margin-bottom: 5px;
@@ -112,4 +131,5 @@ export default {
   .item-quantity {
     text-align: right;
   }
+
 </style>

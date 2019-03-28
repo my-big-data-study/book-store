@@ -37,7 +37,8 @@ const orders = {
     create: (ctx) => {
         const body = ctx.request.body;
         const orderId = require('crypto').randomBytes(8).toString('hex');
-        const timestamp = new Date();
+        const delay = parseFloat(body.delay) || 0;
+        const timestamp = new Date(new Date() - delay * 1000);
 
         const event = {
             timestamp: timestamp,
