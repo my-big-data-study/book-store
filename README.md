@@ -6,7 +6,7 @@ A book store that send orderCreated to Kafka
 Install the dependencies
 
 ```
-(cd ui && npm i) && (cd api && npm i)
+npm i && (cd ui && npm i) && (cd api && npm i)
 ```
 
 Run the application
