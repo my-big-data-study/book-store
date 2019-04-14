@@ -10,7 +10,7 @@ class EventBus {
         if (this.enabled) {
             const kafkaHost = process.env.KAFKA_HOST;
             this.kafkaClient = new kafka.KafkaClient({kafkaHost: kafkaHost});
-            this.producer = new kafka.Producer(kafkaClient)
+            this.producer = new kafka.Producer(this.kafkaClient)
         }
     }
     publish(event) {
