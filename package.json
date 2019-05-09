@@ -8,6 +8,7 @@
     "concurrently": "^4.1.0"
   },
   "scripts": {
+    "postinstall": "(cd ui && npm install) && (cd api && npm install)",
     "serve-ui": "(cd ui && npm run serve)",
     "serve-api": "(cd api && npm run serve)",
     "serve": "concurrently 'npm run serve-ui' 'npm run serve-api'"
